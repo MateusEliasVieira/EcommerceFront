@@ -1,8 +1,8 @@
-import cart from "../../views/cart/Cart.jsx";
+import {cart} from "../../urls/Urls.js";
 
 const Card = (props) => {
     return(
-        <div className="card" style={{width: '18rem', margin:'50px 10px'}}>
+        <div className="card" style={{width: '18rem', margin:'50px 10px', backgroundColor:"#f9f9f9"}}>
             <img src={props.picture} className="card-img-top" alt={props.alt} />
                 <div className="card-body">
                     <h5 className="card-title">{props.title}</h5>

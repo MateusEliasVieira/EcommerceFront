@@ -1,0 +1,7 @@
+#box-newuser{
+    max-width: 1200px;
+    min-width: 360px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0px 0px 20px #dcdbdb;
+}

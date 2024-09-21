@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="container">
-                <p>&copy; {new Date().getFullYear()} Café & Deus. Todos os direitos reservados.</p>
+                <p>&copy; {new Date().getFullYear()} Ipastore. Todos os direitos reservados.</p>
                 <ul className="footer-links">
                     <li><a href={about}>Sobre</a></li>
                     <li><a href={contact}>Contato</a></li>
