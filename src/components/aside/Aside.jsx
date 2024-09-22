@@ -63,7 +63,7 @@ const Aside = () => {
                 <ItemSexo sexo={"Feminino"} value={"Feminino"}/>
             </div>
 
-            <button className="btn btn-primary" onClick={() => applyFilters()}>
+            <button id="btn-filter" onClick={() => applyFilters()}>
                 Aplicar Filtros
             </button>
         </aside>

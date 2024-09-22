@@ -6,3 +6,4 @@ export const newuser = "/new-user";
 export const about = "/about";
 export const contact = "/contact";
 export const privacy = "/privacy";
+export const product = "/product";

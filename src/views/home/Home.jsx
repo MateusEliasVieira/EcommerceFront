@@ -11,35 +11,47 @@ import Carousel from "../../components/carousel/Carousel.jsx";
 import Slide1 from "../../assets/images/slide1.png";
 import Slide2 from "../../assets/images/slide2.png";
 import Slide3 from "../../assets/images/slide3.png";
+import {useEffect, useState} from "react";
+import {listProducts} from "../../requests/ProductRequest.js";
 
 const Home = () => {
+
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        listProducts(setData)
+    }, []);
+
     return (
         <div>
-            <Navbar />
-            <Carousel slide1={Slide1} slide2={Slide2} slide3={Slide3} />
+            <Navbar/>
+            <Carousel slide1={Slide1} slide2={Slide2} slide3={Slide3}/>
             <div id="content" className="container my-4">
                 <div className="row">
                     <div className="col-md-3">
-                        <Aside />
+                        <Aside/>
                     </div>
                     <div className="col-md-9">
                         <section id="section-cards" className="d-flex flex-wrap justify-content-around">
-                            {Array.from({ length: 9 }).map((_, index) => (
+                            {data.map((product, index) => (
                                 <Card
                                     key={index}
-                                    picture={index % 3 === 0 ? Camisa1 : index % 3 === 1 ? Camisa2 : Bone1}
+                                    id={product.idProduct}
+                                    onsale={product.onSale}
+                                    discount={product.discount}
+                                    newprice={product.newPrice}
+                                    picture={product.picture1}
                                     alt="Produto"
-                                    title="Camisa The Choosen Masculina"
-                                    price={59.90}
-                                    description="Camisa 100% algodão com ótima qualidade."
+                                    title={product.title}
+                                    price={product.price}
                                 />
                             ))}
                         </section>
-                        <Pagination />
+                        <Pagination/>
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };

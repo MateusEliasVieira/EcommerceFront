@@ -51,3 +51,20 @@ input[type="range"] {
 .apply-filters:hover {
     background-color: #089d80;
 }
+
+#btn-filter{
+    display: block;
+    width: 150px;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #07bd99;
+    color: white;
+    border: none;
+    margin: 10px auto;
+}
+#btn-filter:hover {
+    background-color: #089d80;
+}
+
