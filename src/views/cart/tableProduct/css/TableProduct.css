@@ -1,0 +1,24 @@
+.th-table-cart {
+    vertical-align: middle;
+    text-align: center;
+    width: 300px;
+}
+
+.td-table-cart {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.td-table-cart.price{
+    font-size: 30px;
+}
+
+#div-frete-buy{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px auto;
+}

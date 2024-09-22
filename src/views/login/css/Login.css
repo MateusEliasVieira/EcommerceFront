@@ -1,7 +1,7 @@
 #login-box {
-    max-width: 400px;
-    min-width: 300px;
-    margin: 80px auto;
+    width: 100%;
+    max-width: 400px; /* Mantém o tamanho máximo */
+    margin: auto auto; /* Margem superior e centralização */
     padding: 40px;
     background-color: #f9f9f9;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
@@ -18,33 +18,5 @@
     margin-bottom: 20px;
 }
 
-#login-box input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    margin-top: 5px;
-}
-
-#login-box button {
-    width: 100%;
-    padding: 12px;
-    background-color: #343a40;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#login-box button:hover {
-    background-color: #23272b;
-}
-
-#login-box p {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #666;
-}
+/* Remova os estilos de input e button que não são necessários
+   Se os componentes Input e Button já têm estilos próprios */

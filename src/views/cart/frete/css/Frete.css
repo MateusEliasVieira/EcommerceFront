@@ -1,0 +1,10 @@
+#div-calc-frete{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+
+#div-calc-frete > button{
+    margin-left: 5px;
+}
