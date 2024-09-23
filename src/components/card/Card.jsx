@@ -1,48 +1,58 @@
-import StarCheckSVG from "../svg/StarCheckSVG.jsx";
-import CartSVG from "../svg/CartSVG.jsx";
 import {product} from "../../urls/Urls.js";
+import {useEffect, useState} from "react";
+import Avaliation from "./avaliation/Avaliation.jsx";
+import "./css/Card.css"
+import ModalCard from "./modalcard/ModalCard.jsx";
 
 const Card = (props) => {
+    const[disabled,setDisabled]=useState("")
+    const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        setDisabled(props.quantitytotal === 0 ? "disabled" : "")
+    }, []);
+
     return (
-        <div className="card" style={{width: '18rem', margin: '50px 10px', backgroundColor: "#f9f9f9"}}>
+        <div className={disabled === "disabled" ? "card disabled-div" : "card"}>
             {
                 props.onsale ?
-                    <div style={{
-                        width: "80px",
-                        height: "30px",
-                        borderRadius: "20px",
-                        backgroundColor: "#ed134a",
-                        textAlign: "center",
-                        margin: "5px",
-                        color: "white"
-                    }}>{props.discount}% OFF</div>
-                    :
-                    <></>
+                    <div className="onsale-badge">
+                        {props.discount}% OFF
+                    </div>
+                    : null
             }
             <a href={`${product}/id=${props.id}`}>
-                <img src={props.picture} className="card-img-top" alt={props.alt}/>
+                <img src={props.picture1} className="card-img-top" alt={props.alt}/>
             </a>
             <div className="card-body">
-                <h5 className="card-title"><a href={`${product}/id=${props.id}`}
-                                              style={{textDecoration: "none", color: "black"}}>{props.title}</a></h5>
-                <div style={{margin: "10px auto"}}>
-                    <StarCheckSVG width={20} height={25} color={"#ecaa03"}/>
-                    <StarCheckSVG width={20} height={25} color={"#ecaa03"}/>
-                    <StarCheckSVG width={20} height={25} color={"#ecaa03"}/>
-                    <StarCheckSVG width={20} height={25} color={"#ecaa03"}/>
-                    <StarCheckSVG width={20} height={25} color={"#ecaa03"}/>
-                </div>
+                <h5 className="card-title">
+                    <a href={`${product}/id=${props.id}`}>{props.title}</a>
+                </h5>
+                <Avaliation avaliation={props.avaliation}/>
                 {
-                    props.onsale ? <del>R${props.price.toFixed(2)}</del> : <></>
+                    props.onsale ? <del>R${props.price.toFixed(2)}</del> : null
                 }
-                <h4 style={{color: "#33ad26"}}>R${props.onsale ? props.newprice.toFixed(2) : props.price.toFixed(2)}</h4>
+                <h4 className="price">R${props.onsale ? props.newprice.toFixed(2) : props.price.toFixed(2)}</h4>
                 <p>À vista no pix ou cartão</p>
-                <button type="button" className="btn btn-success">
-                    Adicionar ao Carrinho <CartSVG width={25} height={25} color={"white"}/>
-                </button>
+                <ModalCard
+                    disabled={disabled}
+                    quantitytotal={props.quantitytotal}
+                    active={active}
+                    setActive={setActive}
+                    id={props.id}
+                    picture1={props.picture1}
+                    picture2={props.picture2}
+                    picture3={props.picture3}
+                    title={props.title}
+                    price={props.price}
+                    onsale={props.onsale}
+                    newprice={props.newprice}
+                    description={props.description}
+                    measure={props.measure}
+                />
             </div>
-
         </div>
     )
 }
+
 export default Card;

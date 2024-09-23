@@ -1,0 +1,32 @@
+#div-container-quantity {
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#div-box-quantity {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d9d6d6;
+}
+
+#div-box-quantity > p {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    margin: auto;
+}
+
+.div-options-svg {
+    cursor: pointer;
+}
+
+.p-options {
+    cursor: pointer;
+}

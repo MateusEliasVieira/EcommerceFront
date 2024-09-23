@@ -1,0 +1,39 @@
+.card {
+    width: 18rem;
+    margin: 50px 10px;
+    background-color: #f9f9f9;
+}
+
+.disabled-div {
+    pointer-events: none; /* Desativa eventos de clique */
+    opacity: 0.5;         /* Torna a div visualmente "desabilitada" */
+}
+
+.card .onsale-badge {
+    width: 80px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #ed134a;
+    text-align: center;
+    margin: 5px;
+    color: white;
+}
+
+.card .card-title a {
+    text-decoration: none;
+    color: black;
+}
+
+.card .price {
+    color: #33ad26;
+}
+
+.btn-esgotado {
+    background-color: red;
+    color: white;
+}
+
+.btn-adicionar {
+    background-color: green;
+    color: white;
+}

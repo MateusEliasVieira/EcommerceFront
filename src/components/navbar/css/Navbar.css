@@ -1,0 +1,15 @@
+.cart-container {
+    position: relative; /* Necessário para posicionar o badge relativo ao carrinho */
+}
+
+.cart-badge {
+    position: absolute;
+    top: -10px; /* Ajuste para mover o badge acima do carrinho */
+    right: -10px; /* Ajuste para mover o badge à direita */
+    background-color: rgba(245, 29, 29, 0.4); /* Cor de fundo para destacar a quantidade */
+    color: white; /* Cor do texto */
+    border-radius: 50%; /* Deixar o badge redondo */
+    padding: 5px 10px; /* Tamanho do badge */
+    font-size: 12px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito no texto */
+}

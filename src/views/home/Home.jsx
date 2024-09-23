@@ -2,9 +2,6 @@ import Navbar from "../../components/navbar/Navbar.jsx";
 import Card from "../../components/card/Card.jsx";
 import Pagination from "../../components/pagination/Pagination.jsx";
 import Footer from "../../components/footer/Footer.jsx";
-import Camisa1 from "../../assets/images/camisa1.jpeg";
-import Camisa2 from "../../assets/images/camisa2.jpeg";
-import Bone1 from "../../assets/images/bone1.png";
 import Aside from "../../components/aside/Aside.jsx";
 import "./css/Home.css";
 import Carousel from "../../components/carousel/Carousel.jsx";
@@ -40,10 +37,18 @@ const Home = () => {
                                     onsale={product.onSale}
                                     discount={product.discount}
                                     newprice={product.newPrice}
-                                    picture={product.picture1}
+                                    picture1={product.picture1}
+                                    picture2={product.picture2}
+                                    picture3={product.picture3}
                                     alt="Produto"
                                     title={product.title}
                                     price={product.price}
+                                    category={product.category}
+                                    description={product.description}
+                                    quantitytotal={product.quantityTotal}
+                                    measure={product.measure}
+                                    avaliation={product.avaliation}
+                                    comment={product.comment}
                                 />
                             ))}
                         </section>

@@ -1,28 +1,40 @@
 import CartSVG from "../svg/CartSVG.jsx";
-import Item from "./Item.jsx";
-import {home, mycart, newuser} from "../../urls/Urls.js";
+import {home, mycart, newuser, login, cart} from "../../urls/Urls.js";
 import {useEffect, useState} from "react";
-import {login} from "../../urls/Urls.js";
+import Item from "./item/Item.jsx";
+import "./css/Navbar.css"
 
 const Navbar = () => {
 
-    const [loginJson,setLoginJson]=useState(null)
+    const [loginJson, setLoginJson] = useState(null);
+    const [quantityItemMyCart, setQuantityItemMyCart] = useState(0);
 
     useEffect(() => {
-        const loginLocalStorage = JSON.parse(localStorage.getItem("login"))
-        if(loginLocalStorage !== "" && loginLocalStorage !== null && loginLocalStorage !== undefined){
-            setLoginJson(loginLocalStorage)
+        const loginLocalStorage = JSON.parse(localStorage.getItem("login"));
+        if (loginLocalStorage !== "" && loginLocalStorage !== null && loginLocalStorage !== undefined) {
+            setLoginJson(loginLocalStorage);
         }
+
+        const quantity = Number.parseInt(localStorage.getItem("quantity_item_my_cart")) || 0;
+        setQuantityItemMyCart(quantity);
     }, []);
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand" href={home}><h4
-                    style={{color: "#15edc2", background: "#1e1f1f", padding: "10px", borderRadius:"15px 0px 15px 0px"}}>Ipastore</h4></a>
+                <a className="navbar-brand" href={home}>
+                    <h4 style={{
+                        color: "#15edc2",
+                        background: "#1e1f1f",
+                        padding: "10px",
+                        borderRadius: "15px 0px 15px 0px"
+                    }}>
+                        Ipastore
+                    </h4>
+                </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
@@ -34,21 +46,27 @@ const Navbar = () => {
                     </ul>
 
                     <ul className="navbar-nav ms-auto">
-                        {
-                            loginJson ? <Item link={"#"} title={"Minha Conta"}/> : <> <Item link={login} title={"Login"}/> <Item link={newuser} title={"Cadastre-se"}/> </>
-                        }
+                        {loginJson ? (
+                            <Item link={"#"} title={"Minha Conta"}/>
+                        ) : (
+                            <>
+                                <Item link={login} title={"Login"}/>
+                                <Item link={newuser} title={"Cadastre-se"}/>
+                            </>
+                        )}
                         <li className="nav-item">
-                            <a href={mycart}>
-                                <CartSVG width={30} height={30} color={"#15edc2"}/>
+                            <a href={cart} className="cart-container">
+                                {quantityItemMyCart > 0 && (
+                                    <span className="cart-badge">{quantityItemMyCart}</span>
+                                )}
+                                <CartSVG width={40} height={30} color={"#15edc2"}/>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar;
-
-

@@ -1,0 +1,42 @@
+.div-measure {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-measure-item{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.div-quantity-price {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens no centro */
+    justify-content: space-between; /* Espaça os itens igualmente */
+    margin-top: 10px; /* Adiciona um espaço acima, se necessário */
+}
+
+.div-quantity {
+    display: flex;
+    align-items: center; /* Alinha o quantity no centro */
+}
+
+
+.p-measure {
+    padding: 10px;
+    border: 1px solid #b9b9b9;
+    margin: 5px 1px;
+    cursor: pointer;
+}
+
+.p-measure.select {
+    background-color: silver;
+}
+
+.p-disabled {
+    color: #727171; /* Indica que está desabilitado */
+    pointer-events: none; /* Desabilita a interação do mouse */
+    cursor: not-allowed; /* Muda o cursor para indicar desabilitação */
+}
+
+
