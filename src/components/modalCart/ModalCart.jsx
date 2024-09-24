@@ -11,6 +11,7 @@ const ModalCart = (props) => {
     const [quantity, setQuantity] = useState(0);
     const [total, setTotal] = useState(0);
     const [showModalMessage, setShowModalMessage] = useState(false);
+    const [message, setMessage] = useState("");
 
     const incrementQuantityItemCart = () => {
         let quantity_item_my_cart = localStorage.getItem("quantity_item_my_cart") !== null
@@ -20,28 +21,48 @@ const ModalCart = (props) => {
         localStorage.setItem("quantity_item_my_cart", (quantity_item_my_cart + 1));
     }
 
-
     const addToCart = () => {
-        // Verifique se o tamanho foi selecionado e se a quantidade é maior que zero
         if (selectedIndex !== null && quantity > 0) {
-            const itemKey = `item_id_${props.id}_measure_${props.measure[selectedIndex].measure}`;
-            console.log(itemKey);
+            // Recupera o carrinho do localStorage (ou cria um carrinho vazio se não existir)
+            let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 
-            localStorage.setItem(itemKey, JSON.stringify({
+            // Criar objeto do item a ser adicionado
+            const newItem = {
                 id: props.id,
+                description: props.description,
                 measure: props.measure[selectedIndex].measure,
                 quantity: quantity,
-                total: total
-            }));
-            console.log(`Item adicionado ao carrinho: ${itemKey}`);
+                price: props.onsale ? props.newprice : props.price,
+                picture: props.picture1,
+                measurequantity: props.measure[selectedIndex].quantity
+            };
+
+            // Verifica se o item já existe no carrinho (com base no id e na medida)
+            const existingItemIndex = cart.findIndex(item => item.id === props.id && item.measure === newItem.measure);
+
+            if (existingItemIndex >= 0) {
+                // Atualiza a quantidade do item existente
+                cart[existingItemIndex].quantity += quantity;
+            } else {
+                // Adiciona o novo item ao carrinho
+                cart.push(newItem);
+            }
+
+            // Atualiza o localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Mostra mensagem de sucesso
+            setMessage("Item adicionado ao carrinho.");
+            setShowModalMessage(true);
+
             incrementQuantityItemCart()
-            setShowModalMessage(true)
         } else {
-            // Exibir um alerta ou notificação se nenhum tamanho for selecionado ou quantidade for zero
-            console.error("Por favor, selecione um tamanho e uma quantidade válida.");
-            alert("Por favor, selecione um tamanho e uma quantidade válida.");
+            setMessage("Por favor, selecione um tamanho e uma quantidade válida.");
+            setShowModalMessage(true);
         }
-    }
+    };
+
+
 
     return (
         <div className={`div-modal-cart ${props.active ? 'active' : ''}`}>
@@ -82,7 +103,7 @@ const ModalCart = (props) => {
                         </button>
 
                         <ModalMessage showModalMessage={showModalMessage} setShowModalMessage={setShowModalMessage}
-                                      message={"Item adicionado ao carrinho com sucesso!"}/>
+                                      message={message}/>
 
                     </div>
                 </div>

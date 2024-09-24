@@ -10,14 +10,23 @@ const Navbar = () => {
     const [quantityItemMyCart, setQuantityItemMyCart] = useState(0);
 
     useEffect(() => {
-        const loginLocalStorage = JSON.parse(localStorage.getItem("login"));
-        if (loginLocalStorage !== "" && loginLocalStorage !== null && loginLocalStorage !== undefined) {
-            setLoginJson(loginLocalStorage);
-        }
+        const updateCartQuantity = () => {
+            const quantity = Number.parseInt(localStorage.getItem("quantity_item_my_cart")) || 0;
+            setQuantityItemMyCart(quantity);
+        };
 
-        const quantity = Number.parseInt(localStorage.getItem("quantity_item_my_cart")) || 0;
-        setQuantityItemMyCart(quantity);
+        // Atualiza quantidade de itens ao carregar a página
+        updateCartQuantity();
+
+        // Monitora mudanças no localStorage para reatualizar a quantidade de itens
+        window.addEventListener('storage', updateCartQuantity);
+
+        // Cleanup ao desmontar o componente
+        return () => {
+            window.removeEventListener('storage', updateCartQuantity);
+        };
     }, []);
+
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
