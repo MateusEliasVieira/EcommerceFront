@@ -6,6 +6,7 @@ import Buy from '../buy/Buy.jsx';
 import Flag from '../../../assets/images/bandeiras.jpeg';
 
 const TableProductCart = () => {
+
     const [cartItems, setCartItems] = useState([]);
 
     // Carrega o carrinho do localStorage
@@ -48,10 +49,13 @@ const TableProductCart = () => {
                         <td className="td-table-cart">
                             <HandleProduct
                                 id={item.id}
+                                measure={item.measure}
                                 quantity={item.quantity}
                                 price={item.price}
                                 measurequantity={item.measurequantity}
                                 onCartUpdate={handleCartUpdate}
+                                setCartItems={setCartItems}
+                                cartItems={cartItems}
                             />
                         </td>
                         <td className="td-table-cart price">R${(item.price * item.quantity).toFixed(2)}</td>

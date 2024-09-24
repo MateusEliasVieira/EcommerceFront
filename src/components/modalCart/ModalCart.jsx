@@ -13,12 +13,12 @@ const ModalCart = (props) => {
     const [showModalMessage, setShowModalMessage] = useState(false);
     const [message, setMessage] = useState("");
 
-    const incrementQuantityItemCart = () => {
+    const incrementQuantityItemCart = (newQuantity) => {
         let quantity_item_my_cart = localStorage.getItem("quantity_item_my_cart") !== null
             ? Number.parseInt(localStorage.getItem("quantity_item_my_cart"))
             : 0;
 
-        localStorage.setItem("quantity_item_my_cart", (quantity_item_my_cart + 1));
+        localStorage.setItem("quantity_item_my_cart", (quantity_item_my_cart + newQuantity));
     }
 
     const addToCart = () => {
@@ -55,7 +55,7 @@ const ModalCart = (props) => {
             setMessage("Item adicionado ao carrinho.");
             setShowModalMessage(true);
 
-            incrementQuantityItemCart()
+            incrementQuantityItemCart(quantity)
         } else {
             setMessage("Por favor, selecione um tamanho e uma quantidade válida.");
             setShowModalMessage(true);
